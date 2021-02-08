@@ -26,8 +26,8 @@ export class TemplateformComponent implements OnInit {
      console.log(this.personnes);
   }
 
-  supprimerPersonne(){
-    const index = this.personnes.indexOf(this.personne);
+  supprimerPersonne(personne: Personne){
+    const index: number = this.personnes.indexOf(personne);
     this.personnes.splice(index, 1);
   }
 
