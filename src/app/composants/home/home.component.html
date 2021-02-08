@@ -1,0 +1,222 @@
+<div class="container">
+    <h2>{{ title }} app is running!</h2>
+    <ul>
+      <li class="list-group-item">{{ direBonjour() }}</li>
+      <!-- pour afficher le contenu de l'attribut libellé déclarée dans le code source .ts, on peut utiliser l'interpolation -->
+      <li class="list-group-item">{{ libelleFormation }}</li>
+  
+      <!-- On peut aussi faire le one way binding en utilisant la propriété JS textContent -->
+      <li class="list-group-item" [textContent]="libelleFormation"></li>
+  
+      <li class="list-group-item">Nom: {{ personne.nom }}</li>
+      <li class="list-group-item">{{ personne }}</li>
+      <li class="list-group-item">{{ personne | json }}</li>
+  
+      <!-- Ce code est trop répétitif, utiliser les directives -->
+      <li class="list-group-item">{{ tab[0] }}</li>
+      <li class="list-group-item">{{ tab[1] }}</li>
+      <li class="list-group-item">{{ tab[2] }}</li>
+      <li class="list-group-item">{{ tab[3] }}</li>
+      <!-- Utilisation de la directive *ngFor qui nous permet de répéter un traitement, ici sur un array[tab] déclaré et initialisé dans le code-behind -->
+  
+      <!-- Ces directives s'utilisent avec les composants web:
+      -ng-container
+      -ng-template
+     -->
+      <li>
+        <ul>
+          <li *ngFor="let elt of tab">
+            {{ elt }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li *ngFor="let elt of tab; let i = index">
+            {{ i }} : {{ elt }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li *ngFor="let elt of tab; index as i">
+            {{ i }} : {{ elt }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li *ngFor="let elt of tab; let i = index; let isFirst = first; let isLast = last">
+            {{ i }} : {{ elt }} : {{ isFirst }} : {{ isLast }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li *ngFor="let elt of tab; let i = index; let isEven = even; let isOdd = odd">
+            {{ i }} : {{ elt }} : {{ isEven }} : {{ isOdd }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li *ngIf="tab[0] % 2 != 0">
+            {{ tab[0] }} est impair.
+          </li>
+        </ul>
+      </li>
+      <!-- Ecrire un code HTML, en utilisant les directives Angular, qui permet d'afficher sous forme d'une liste chaque élément du tableau précédent (tab), ainsi que sa parité. -->
+      <li>
+        <ul>
+          <li *ngIf="tab[0] % 2 != 0; else sinon">
+            {{ tab[0] }} est impair.
+          </li>
+          <ng-template #sinon>
+            <li>
+              {{ tab[0] }} est pair.
+            </li>
+          </ng-template>
+        </ul>
+      </li>
+      <!-- avec une autre condition, comme un elseif = then  -->
+      <li>
+        <ul>
+          <li *ngIf="tab[0] % 2 != 0; then si else sinon">
+            Ce code ne sera jamais affiché.
+          </li>
+          <ng-template #si>
+            <li>
+              {{ tab[0] }} est impair.
+            </li>
+          </ng-template>
+          <ng-template #sinon>
+            <li>
+              {{ tab[0] }} est pair.
+            </li>
+          </ng-template>
+        </ul>
+      </li>
+      <!-- Ecrire un code HTML, en utilisant les directives Angular, qui permet d'afficher sous forme d'une liste chaque élément du tableau (tab) ainsi que sa parité. -->
+      <li>
+        <h4>liste des éléments présents dans tab, et info sur pair ou impair</h4>
+        <ul>
+          <ng-container *ngFor="let elt of tab">
+            <li *ngIf="elt % 2 != 0; then si else sinon">
+              Ce code ne sera jamais affiché.
+            </li>
+            <ng-template #si>
+              <li>
+                {{ elt }} est impair.
+              </li>
+            </ng-template>
+            <ng-template #sinon>
+              <li>
+                {{ elt }} est pair.
+              </li>
+            </ng-template>
+          </ng-container>
+        </ul>
+      </li>
+      <!-- Ecrire un code HTML, en utilisant les directives Angular, qui permet d'afficher sous forme d'une liste chaque élément du tableau (tab) avec un message défini ainsi:
+      Si la valeur est comprise entre 0 et 9: echec
+      Si elle se situe entre 10 et 13: moyen
+      Si elle se situe entre 14 et 16: bien
+      Sinon: très bien -->
+      <li>
+        <h4>Appliquer plusieurs conditions à chaque élément de tab</h4>
+        <ul>
+          <ng-container *ngFor="let elt of tab">
+            <ng-container [ngSwitch]='true'>
+              <li *ngSwitchCase="elt >= 0 && elt <= 9">
+                {{ elt }} : échec</li>
+              <li *ngSwitchCase="elt >= 10 && elt <= 13">
+                {{ elt }} : moyen
+              </li>
+              <li *ngSwitchCase="elt >= 14 && elt <= 16">
+                {{ elt }} : bien
+              </li>
+              <li *ngSwitchCase="elt > 16">
+                {{ elt }} : très bien
+              </li>
+              <li *ngSwitchDefault>
+                Autre
+              </li>
+            </ng-container>
+          </ng-container>
+        </ul>
+      </li>
+      <!-- [ngStyle] permet de modifier le style d'un élément HTML
+      S'utilise avec le property binding[] pour récupérer des valeurs définies dans le code-behind (le app.component.ts)-->
+      <li class="list-group-item">
+        <p [textContent]="nom"[ngStyle]='{ color:getColor(), backgroundColor: couleur }'></p>
+      </li>
+      <li class="list-group-item">
+        <p [ngStyle]='{ color:getColor(),  backgroundColor: getBackgroundColor()}'>
+          {{ libelleFormation }}
+        </p>
+      </li>
+  
+      <!-- [ngClass] permet d'attribuer de nouvelles classes à un élément HTML 
+      S'utilise également avec le property binding[] pour récupérer des valeurs dans le code-behind ou dans la feuille de style -->
+      <li class="list-group-item">
+        <p [ngClass]="{'rouge': true}">
+          {{ nom }}
+        </p>
+      </li>
+      <!-- avec une condition -->
+      <li class="list-group-item">
+        <p [ngClass]="{'rouge': nom == 'Doe'}">
+          {{ nom }}
+        </p>
+      </li>
+      <!-- avec une condition et une autre option -->
+      <li class="list-group-item">
+        <p [ngClass]="{'rouge': nom == 'Doe', 'bleu': nom != 'Doe'}">
+          {{ nom }}
+        </p>
+      </li>
+      <li class="list-group-item">
+        <p [ngClass]="nom === 'Doe' ? 'rouge' : 'bleu'">
+          {{ nom }}
+        </p>
+      </li>
+    </ul>
+    <!-- EXO -->
+    <!-- Utiliser ngClass dans un code HTML permettant d'afficher en bleu les éléments pairs du tableau (tab) et en rouge les éléments impairs-->
+    <li class="list-group-item">
+      <ul>
+        <ng-container *ngFor="let elt of tab">
+          <li [ngClass]="elt % 2 != 0 ? 'rouge' : 'bleu'">
+            {{ elt }}
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+    <!-- EXO 2 -->
+    <!-- Ecrire un script Angular qui permet d'afficher dans une liste HTML. Les éléments de la liste personne (on affiche les prenoms et les noms). Les éléments d'indice pair seront affichés en rouge, les impairs en bleu. -->
+    <li class="list-group-item">
+      <ul>
+        <ng-container *ngFor="let personne of personnes">
+          <li [ngClass]="personne.num % 2 != 0 ? 'bleu' : 'rouge'">
+            {{ personne.prenom}} {{ personne.nom}}
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+    <!-- Autre façon de faire, avec l'index -->
+    <li class="list-group-item">
+      <ul>
+        <ng-container *ngFor="let elt of personnes; let i = index;">
+          <li [ngClass]="i % 2 != 0 ? 'bleu' : 'rouge'">
+            {{ elt.nom + " " + elt.prenom }}
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+  
+  </div>
+  
+  <app-stagiaire></app-stagiaire>
+  <!-- Affichera stagiaire works! dans le navigateur -->
+  <app-adresse></app-adresse>
+  <!-- Affichera adresse works! dans le navigateur -->

@@ -1,0 +1,63 @@
+<!-- <div>
+    <input type="text" #nom/>
+</div>
+<div>
+    <button (click)="direBonjour(nom.value)">Cliquer</button>
+</div>
+<div>
+    Bonjour {{ result }}
+</div> -->
+
+<!-- Plusieurs formes de binding 
+1) Interpolation: {{ exemple}} qui nous permet de récupérer la valeur d'un attribut déclaré dans le component= > c'est un raccourci du One Way Biding
+2) One Way Binding [ Exemple ]: permet aussi de récupérer la valeur d'un attribut déclaré dans le component
+3) Event Binding: permet au component.ts de récupérer des valeurs passées par le component.html 
+
+Il est possible de combiner le one way binding et le event binding === le two way binding 
+Two Way Binding: un changement de valeur dans component.ts sera aperçu dans componennt.html et un changement dans componenent.html sera reçu dans component.ts
+
+Pour la liaision bidirectionnelle, il nous faut la propriété ngModel
+Pour pouvoir utiliser la propriété ngModel, il faut ajouter le module FormsModule dans app.module.ts -->
+
+<!-- Exemple de two way binding avec ngModel -->
+<!-- <div>
+    <input type="text" [(ngModel)]="nom"/>
+</div>
+<div>
+    Bonjour {{ nom }}
+</div> -->
+
+<!-- Avec l'utilisation de l'interface Personne et de ngModel -->
+
+<!-- ngForm permet d'utuliser des propriétés plus facilement  -->
+<!-- ngSubmit = submit classique -->
+<form #monForm=ngForm (ngSubmit)=ajouterPersonne() >
+    <div>
+        Prénom: <input type="text" name="prenom" [(ngModel)]="personne.prenom" required #prenom='ngModel'/>
+    </div>
+    <!-- {{ prenom.className }} -->
+    <!-- de base, les classes sont: ng-dirty ng-touched ng-invalid -->
+    <!-- lorsque que le champ est remplis, les classes sont: ng-dirty ng-valid ng-touched -->
+    <!-- .pristine => si prenom est vide, on a pas besoin d'afficher le msg d'erreur -->
+    <div [hidden]="prenom.valid || prenom.pristine">Le prénom est obligatoire. </div>
+    <div>
+        Nom: <input type="text" name="nom" [(ngModel)]="personne.nom" required #nom='ngModel'/>
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">Le nom est obligatoire. </div>
+    <div>
+        <!-- ici, on indique si monForm n'est pas valide cad que les deux champs ne sont pas remplis car required
+        le bouton sera en disabled -->
+        <button [disabled]=!monForm.valid>
+            Ajouter 
+        </button>
+    </div>
+    <div>
+        <ul>
+            <ng-container *ngFor="let personne of personnes;">
+                <li>
+                  {{ personne.prenom + " " + personne.nom }}
+                </li>
+              </ng-container>
+        </ul>
+    </div>
+</form>
