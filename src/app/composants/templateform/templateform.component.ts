@@ -26,6 +26,11 @@ export class TemplateformComponent implements OnInit {
      console.log(this.personnes);
   }
 
+  supprimerPersonne(){
+    const index = this.personnes.indexOf(this.personne);
+    this.personnes.splice(index, 1);
+  }
+
 // Modifier le composant formulaire pour afficher les personnes
 // ajoutees en-dessous du formulaire
 // A chaque ajout, la nouvelle personne ajoutee apparaıt comme

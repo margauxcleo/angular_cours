@@ -51,12 +51,16 @@ Pour pouvoir utiliser la propriété ngModel, il faut ajouter le module FormsMod
             Ajouter 
         </button>
     </div>
-    <div>
-        <ul>
+    <br/>
+    <div class="container">
+        <ul class="row list-group">
             <ng-container *ngFor="let personne of personnes;">
-                <li>
+                <li class="list-group-item">
                   {{ personne.prenom + " " + personne.nom }}
                 </li>
+                <form (ngSubmit)=supprimerPersonne()>
+                    <button class="btn btn-danger"> Supprimer </button>
+                </form>
               </ng-container>
         </ul>
     </div>
