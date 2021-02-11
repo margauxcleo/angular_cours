@@ -35,6 +35,7 @@ import { AddressFormComponent } from './composants/materials/address-form/addres
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { VehiculeModule } from './modules/vehicule/vehicule.module';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatListModule,
     MatInputModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    VehiculeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

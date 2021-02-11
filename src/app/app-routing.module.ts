@@ -37,6 +37,9 @@ const routes: Routes = [
   { path: 'navigation', component : NavigationComponent },
   { path: 'address-form', component: AddressFormComponent},
 
+  // lazy-loading: charge les routes placées dans le fichier de routing de vehicule à la demande 
+  { path: 'vehicule', loadChildren: './modules/vehicule/vehicule.module#VehiculeModule'},
+
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // full = mot exact, ici 'home'
   { path: '**', redirectTo: '/error' } // path error => "**" => n'importe quel contenu 
