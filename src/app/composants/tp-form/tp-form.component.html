@@ -1,0 +1,463 @@
+<!-- ENONCE
+Dans un nouveau composant, creer un formulaire qui permet `a
+une personne de saisir son nom, son prenom ainsi qu’un tableau
+de commentaire de taille variable.
+Chaque commentaire est compose d’un titre, un contenu et une
+categorie.
+En cliquant sur Ajouter, les donnees saisies sont affichees en
+bas du formulaire et le formulaire est vide.
+Aucun champ ne doit etre vide a l’ajout, les nom et prenom
+doivent commencer par une lettre majuscule. -->
+
+<!-- Ma version (fonctionne) -->
+<!-- <div class="container container-fluid light-background">
+    <div class="jumbotron">
+        <h1>TP Reactive Formulaire</h1>
+        <p class="lead"></p>
+        <p class="lead"></p>
+        <p class="lead"></p>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="commentForm" (ngSubmit)='showAll()'>
+                        <div class="row">
+                            <div class="col-sm-10 col-md-4">
+                                <div class="form-group">
+                                    <label class="input-group-text greyText" for="authorId">
+                                        <span><i class="fas fa-id-card"></i></span>
+                                        <span>Identifiant</span>
+                                    </label>
+                                    <input class="form-control" type="number" placeholder="Indiquer votre identifiant"
+                                        name=authorId formControlName="authorId" />
+                                </div>
+                                <div *ngIf="commentForm.controls['authorId'].invalid && (commentForm.controls['authorId'].dirty || 
+                                commentForm.controls['authorId'].touched)" class="alert alert-danger">
+                                    <div *ngIf="commentForm.controls['authorId'].errors?.required">
+                                        L'identifiant est obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="form-group">
+                                <label class="input-group-text greyText" for="authorfirstname">
+                                    <span><i class="fas fa-user"></i></span>
+                                    <span>Prénom</span>
+                                </label>
+                                <input class="form-control" type="text" placeholder="Indiquer votre prénom"
+                                    name=authorfirstname formControlName="authorfirstname" />
+                                </div>
+                                <div *ngIf="commentForm.controls['authorfirstname'].invalid && (commentForm.controls['authorfirstname'].dirty || commentForm.controls['authorfirstname'].touched)"
+                                class="alert alert-danger">
+                                    <div *ngIf="commentForm.controls['authorfirstname'].errors?.required">
+                                        Le prénom est obligatoire
+                                    </div>
+                                    <div *ngIf="commentForm.controls['authorfirstname'].errors?.error">
+                                        Première lettre en majuscule obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-10 col-md-4">
+                                <div class="form-group">
+                                    <label class="input-group-text greyText" for="authorlastname">
+                                        <span><i class="fas fa-user"></i></span>
+                                        <span>Nom</span>
+                                    </label>
+                                    <input class="form-control" type="text" placeholder="Indiquer votre nom" name=authorlastname
+                                        formControlName="authorlastname" />
+                                </div>
+                                <div *ngIf="commentForm.controls['authorlastname'].invalid && (commentForm.controls['authorlastname'].dirty || commentForm.controls['authorlastname'].touched)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="commentForm.controls['authorlastname'].errors?.required">
+                                        Le nom est obligatoire
+                                    </div>
+                                    <div *ngIf="commentForm.controls['authorlastname'].errors?.error">
+                                        Première lettre en majuscule obligatoire
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <button class="btn btn-blue" type="submit" [disabled]="!commentForm.valid">Valider</button>
+                        <br />
+                        <div formArrayName="comments">
+                            <div class="row">
+                                <div class="col-sm-10 col-md-6">
+                                    <h3  class="card-title" style="display: contents">
+                                        <i class="fas fa-comment"></i>
+                                        Commentaire(s)</h3>
+                                </div>
+                                <div class="col-sm-10 col-md-6">
+                                    <button class="btn btn-grey" type="button" (click)="addComment()">
+                                        Ajouter un commentaire
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div *ngFor="let comment of comments.controls; let i = index;">
+                                        <div [formGroupName]="i">
+                                            <div class="row">
+                                                <!-- Titre commentaire -->
+                                                <!-- <div class="col-sm-10 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="input-group-text" for="title">Titre</label>
+                                                        <input class="form-control" type="text" placeholder="Indiquer un titre" name=title
+                                                        formControlName="title" />
+                                                    </div>
+                                                </div>
+                                                <!-- Catégorie commentaire -->
+                                                <!-- <div class="col-sm-10 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="input-group-text" for="category">Catégorie</label>
+                                                        <input class="form-control" type="text" placeholder="Indiquer une catégorie"
+                                                            name=category formControlName="category" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Contenu commentaire -->
+                                            <!-- <div class="row">
+                                                <div class="col-sm-10 col-md-12">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Commentaire</span>
+                                                        <textarea class="form-control" aria-label="Ecrire ici" name=content
+                                                        formControlName="content"></textarea>
+                                                    </div>
+                                                </div>
+                    
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-delete" type="button" (click)="deleteComment(i)">
+                                                        Supprimer
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div *ngFor="let person of personsComments;">
+                                <table class="table">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Prénom</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ person.authorId }}</td>
+                                            <td>{{ person.authorfirstname }}</td>
+                                            <td>{{ person.authorlastname }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div *ngFor="let comment of person.comments;">
+                                    <table class="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">Titre commentaire</th>
+                                                <th scope="col">Catégorie</th>
+                                                <th scope="col">Commentaire</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ comment.title }}</td>
+                                                <td>{{ comment.category }}</td>
+                                                <td>{{ comment.content }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>  --> 
+
+<!-- CORRECTION PROF  -->
+<!-- <div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Tp Formulaire</h1>
+        <p class="lead">Chaque element de notre formulaire est un « FormGroup » </p>
+        <p class="lead">Chaque « formGroup » peut contenir 1 ou plusieurs « FormControl » </p>
+        <p class="lead">Chaque « FormControl » contient une valeur par défaut et un system de validation. </p>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <h3>Personne</h3>
+            <form [formGroup]="personneForm" #myForm="ngForm" (ngSubmit)='afficherTout()'>
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input class="form-control" type="number" placeholder="Enter Id" name=id formControlName="id">
+                </div>
+                <div *ngIf="personneForm.controls['id'].invalid && (personneForm.controls['id'].dirty || personneForm.controls['id'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="personneForm.controls['id'].errors?.required">
+                        L'identifiant est obligatoire
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input class="form-control" type="text" placeholder="Enter LastName" name=nom formControlName="nom">
+                </div>
+                <div *ngIf="personneForm.controls['nom'].invalid && (personneForm.controls['nom'].dirty || personneForm.controls['nom'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="personneForm.controls['nom'].errors?.required">
+                        Le nom est obligatoire
+                    </div>
+                    <div *ngIf="personneForm.controls['nom'].errors?.erreur">
+                        Premiere lettre en majuscule
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prenom:</label>
+                    <input class="form-control" type="text" placeholder="Enter FirstName" name=prenom
+                        formControlName="prenom">
+                </div>
+                <div *ngIf="personneForm.controls['prenom'].invalid && (personneForm.controls['prenom'].dirty || personneForm.controls['prenom'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="personneForm.controls['prenom'].errors?.required">
+                        Le prenom est obligatoire
+                    </div>
+                    <div *ngIf="personneForm.controls['prenom'].errors?.erreur">
+                        Premiere lettre en majuscule
+                    </div>
+                </div>
+                <button class="btn btn-success" [disabled]='!personneForm.valid'>Envoyer</button>
+                <br>
+                <br>
+                <div formArrayName="commentaires">
+                    <h3 style="display: contents;">Commentaires </h3>
+                    <button class="btn btn-primary" type=button (click)="ajouterCommentaire()">
+                        Ajouter commentaire
+                    </button>
+                    <div *ngFor="let commentaire of commentaires.controls; let i= index">
+                        <div class="" [formGroupName]="i">
+                            <div class="form-group">
+                                <label for="prenom">Titre:</label>
+                                <input class="form-control" placeholder="titre" name="titre" formControlName="titre">
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom">Contenu:</label>
+                                <input class="form-control" placeholder="contenu" name="contenu"
+                                    formControlName="contenu">
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom">Catégorie:</label>
+                                <input class="form-control" placeholder="categorie" name="categorie"
+                                    formControlName="categorie">
+                            </div>
+                            <button class="btn btn-danger" type=button (click)="supprimerCommentaire(i)">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Prenom</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Commentaires</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let elt of personnes;">
+                            <td>{{ elt.id }}</td>
+                            <td>{{ elt.prenom }}</td>
+                            <td>{{ elt.nom }}</td>
+                            <td *ngFor="let subItem of elt.commentaires">
+                                <p><span style="font-weight: bold;padding-right: 5px;">Titre:</span>{{ subItem.titre }}
+                                    <span style="font-weight: bold;padding-right: 5px;">Contenu:</span> {{
+                                    subItem.contenu }} <span
+                                        style="font-weight: bold;padding-right: 5px;">Catégorie:</span>{{
+                                    subItem.categorie }}
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>  -->
+
+<!-- CORRECTION PROF - VERSION MATERIAL -->
+<div class="container">
+    <mat-card class="example-card" style="padding: 80px;">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Tp Formulaire</mat-card-title>
+            <mat-card-subtitle>Chaque element de notre formulaire est un « FormGroup » </mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <mat-card class="example-card" style="margin-top: 20px;">
+        <mat-card-header>
+            <div class="row" style="width: 100%;">
+                <div class="col-sm">
+                    <h1 style="font-weight: bold;">Personne</h1>
+                    <form [formGroup]="personneForm" #myForm="ngForm" (ngSubmit)='afficherTout()'>
+                        <table class="" cellspacing="0" style="width:100%">
+                            <tr>
+                                <td>
+                                    <mat-form-field style="width:100%">
+                                        <input matInput type="number" placeholder="Enter Id" name=id
+                                            formControlName="id">
+                                        <mat-error
+                                            *ngIf="personneForm.controls['id'].invalid && (personneForm.controls['id'].dirty || personneForm.controls['id'].touched)">
+                                            <div *ngIf="personneForm.controls['id'].errors?.required">
+                                                L'identifiant est obligatoire
+                                            </div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field style="width:100%">
+                                        <input matInput type="text" placeholder="Enter LastName" name=nom
+                                            formControlName="nom">
+                                        <mat-error
+                                            *ngIf="personneForm.controls['nom'].invalid && (personneForm.controls['nom'].dirty || personneForm.controls['nom'].touched)">
+                                            <div *ngIf="personneForm.controls['nom'].errors?.required">
+                                                Le nom est obligatoire
+                                            </div>
+                                            <div *ngIf="personneForm.controls['nom'].errors?.erreur">
+                                                Premiere lettre en majuscule
+                                            </div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field style="width:100%">
+                                        <input matInput type="text" placeholder="Enter FirstName" name=prenom
+                                            formControlName="prenom">
+                                        <mat-error
+                                            *ngIf="personneForm.controls['prenom'].invalid && (personneForm.controls['prenom'].dirty || personneForm.controls['prenom'].touched)">
+                                            <div *ngIf="personneForm.controls['prenom'].errors?.required">
+                                                Le prenom est obligatoire
+                                            </div>
+                                            <div *ngIf="personneForm.controls['prenom'].errors?.erreur">
+                                                Premiere lettre en majuscule
+                                            </div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <!-- <mat-list>
+                            <mat-list-item> 
+                                <mat-icon matListIcon>calendar_view_month</mat-icon>
+                                <span>Pepper</span> 
+                            </mat-list-item>
+                            <mat-list-item> Salt </mat-list-item>
+                            <mat-list-item> Paprika </mat-list-item>
+                        </mat-list> -->
+                        <br>
+                        <br>
+                        <button mat-raised-button [disabled]='!personneForm.valid'>Envoyer</button>
+                        <br>
+                        <br>
+                        <div formArrayName="commentaires">
+                            <h1 style="display: contents;font-weight: bold;">Commentaires</h1>
+                            <button mat-raised-button color="primary" type=button style="margin-left: 10px;"
+                                (click)="ajouterCommentaire()">Ajouter commentaire</button>
+                            <div *ngFor="let commentaire of commentaires.controls; let i= index">
+                                <div class="" [formGroupName]="i">
+                                    <table class="" cellspacing="0" style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <mat-form-field style="width:100%">
+                                                    <input matInput type="text" placeholder="titre" name="titre"
+                                                        formControlName="titre">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field style="width:100%">
+                                                    <input matInput type="text" placeholder="contenu" name="contenu"
+                                                        formControlName="contenu">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field style="width:100%">
+                                                    <input matInput type="text" placeholder="categorie" name="categorie"
+                                                        formControlName="categorie">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <button mat-raised-button color="warn" type=button
+                                        (click)="supprimerCommentaire(i)">
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Commentaires</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let elt of personnes;">
+                                    <td>{{ elt.id }}</td>
+                                    <td>{{ elt.prenom }}</td>
+                                    <td>{{ elt.nom }}</td>
+                                    <td *ngFor="let subItem of elt.commentaires">
+                                        <p><span style="font-weight: bold;padding-right: 5px;">Titre:</span>{{
+                                            subItem.titre }}
+                                            <span style="font-weight: bold;padding-right: 5px;">Contenu:</span> {{
+                                            subItem.contenu }} <span
+                                                style="font-weight: bold;padding-right: 5px;">Catégorie:</span>{{
+                                            subItem.categorie }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </mat-card-header>
+    </mat-card>
+</div>

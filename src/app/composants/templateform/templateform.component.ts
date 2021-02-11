@@ -38,6 +38,7 @@ export class TemplateformComponent implements OnInit {
 // formulaire)
 
   // -----exemple avec l'ajout d'un bouton et le one way binding
+  // nom = "";
   // result = "";
   // constructor() { }
 

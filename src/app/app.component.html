@@ -6,17 +6,35 @@
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav">
             <li>
-                <a class="nav-link" routerLink="" routerLinkActiveOptions="true">Accueil</a>
+                <a class="nav-link grabLink" routerLink="" routerLinkActiveOptions="true">Accueil</a>
+            </li> 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" >Routing</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="adresse">Adresse</a>
+                    <a class="dropdown-item" routerLink="stagiaire">Stagiaire</a>
+                </div>
             </li>
-            <li routerLinkActive="active">
-                <a class="nav-link" routerLink="adresse">Adresse</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" >Formulaires</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="template-form">Formulaire 1</a>
+                    <a class="dropdown-item" routerLink="calculette">Calculette</a>
+                    <a class="dropdown-item" routerLink="reactive-form">Reactive Form</a>
+                    <a class="dropdown-item" routerLink="tp-form">TpForm</a>
+                    
+                </div>
             </li>
-            <li routerLinkActive="active" >
-                <a class="nav-link" routerLink="stagiaire">Stagiaire</a>
-            </li>
-            <li routerLinkActive="active" >
-                <a class="nav-link" routerLink="template-form">Formulaire 1</a>
-            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" >Material UI</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="dragdrop">Drag&Drop</a>
+                    <a class="dropdown-item" routerLink="dashboard">Dashboard</a>
+                    <a class="dropdown-item" routerLink="table">Table</a>
+                    <a class="dropdown-item" routerLink="navigation">Navigation</a>
+                    <a class="dropdown-item" routerLink="address-form">Address Form</a>
+                </div>
+            </li>  
         </ul>
     </div>
 </nav>

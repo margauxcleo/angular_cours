@@ -31,38 +31,47 @@ Pour pouvoir utiliser la propriété ngModel, il faut ajouter le module FormsMod
 
 <!-- ngForm permet d'utuliser des propriétés plus facilement  -->
 <!-- ngSubmit = submit classique -->
-<form #monForm=ngForm (ngSubmit)=ajouterPersonne() >
-    <div>
-        Prénom: <input type="text" name="prenom" [(ngModel)]="personne.prenom" required #prenom='ngModel'/>
-    </div>
-    <!-- {{ prenom.className }} -->
-    <!-- de base, les classes sont: ng-dirty ng-touched ng-invalid -->
-    <!-- lorsque que le champ est remplis, les classes sont: ng-dirty ng-valid ng-touched -->
-    <!-- .pristine => si prenom est vide, on a pas besoin d'afficher le msg d'erreur -->
-    <div [hidden]="prenom.valid || prenom.pristine">Le prénom est obligatoire. </div>
-    <div>
-        Nom: <input type="text" name="nom" [(ngModel)]="personne.nom" required #nom='ngModel'/>
-    </div>
-    <div [hidden]="nom.valid || nom.pristine">Le nom est obligatoire. </div>
-    <div>
-        <!-- ici, on indique si monForm n'est pas valide cad que les deux champs ne sont pas remplis car required
-        le bouton sera en disabled -->
-        <button [disabled]=!monForm.valid>
-            Ajouter 
-        </button>
-    </div>
-    <br/>
-    <div class="container">
-        <ul class="row list-group">
-            <ng-container *ngFor="let personne of personnes;">
-                <li class="list-group-item">
-                  {{ personne.prenom + " " + personne.nom }}
-                </li>
-                <!-- <form (ngSubmit)=supprimerPersonne(personne)>
-                    <button class="btn btn-danger"> Supprimer </button>
-                </form> -->
-                <button type="submit" class="btn btn-danger" (click)="supprimerPersonne(personne)">Supprimer</button>
-            </ng-container>
-        </ul>
-    </div>
-</form>
+<div class="container container-fluid">
+    <div class="row">
+        <div class="mb-3 col-12 flex-fill">
+            <form #monForm=ngForm (ngSubmit)=ajouterPersonne() class="col-10">
+                <div>
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input class="form-control" type="text" name="prenom" [(ngModel)]="personne.prenom" required #prenom='ngModel'/>
+                </div>
+                <!-- {{ prenom.className }} -->
+                <!-- de base, les classes sont: ng-dirty ng-touched ng-invalid -->
+                <!-- lorsque que le champ est remplis, les classes sont: ng-dirty ng-valid ng-touched -->
+                <!-- .pristine => si prenom est vide, on a pas besoin d'afficher le msg d'erreur -->
+                <div [hidden]="prenom.valid || prenom.pristine">Le prénom est obligatoire. </div>
+                <div>
+                    <label for="nom" class="form-label">Nom:</label>
+                    <input input class="form-control" type="text" name="nom" [(ngModel)]="personne.nom" required #nom='ngModel'/>
+                </div>
+                <div [hidden]="nom.valid || nom.pristine">Le nom est obligatoire. </div>
+                <div>
+                    <!-- ici, on indique si monForm n'est pas valide cad que les deux champs ne sont pas remplis car required
+                    le bouton sera en disabled -->
+                    <button [disabled]=!monForm.valid>
+                        Ajouter 
+                    </button>
+                </div>
+                <br/>
+                <div class="container">
+                    <ul class="row list-group">
+                        <ng-container *ngFor="let personne of personnes;">
+                            <li class="list-group-item">
+                              {{ personne.prenom + " " + personne.nom }}
+                            </li>
+                            <!-- <form (ngSubmit)=supprimerPersonne(personne)>
+                                <button class="btn btn-danger"> Supprimer </button>
+                            </form> -->
+                            <button type="submit" class="btn btn-danger" (click)="supprimerPersonne(personne)">Supprimer</button>
+                        </ng-container>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        
+    </div>    
+</div>

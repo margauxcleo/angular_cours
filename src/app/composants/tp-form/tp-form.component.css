@@ -1,0 +1,63 @@
+/* Mon CSS */
+span{
+    padding-left: 5px;
+}
+
+.light-background{
+    background-color: lightgray;
+}
+
+.blueText{
+    color: #2BBBAD;
+}
+
+.greyText{
+    color: grey;
+}
+
+.btn-blue{
+    background-color: #2BBBAD;
+    margin: 6px;
+    border-radius: 2px;
+    font-size: .8rem;
+    padding: .85rem 2.13rem;
+    transition: .2s ease-out;
+    white-space: normal!important;
+    color: white;
+}
+
+.btn-blue:active, .btn-blue:hover, .btn-blue:focus{
+    background-color: #30cfc0!important;
+}
+
+.btn-grey{
+    background-color: grey;
+    margin: 6px;
+    border-radius: 2px;
+    font-size: .8rem;
+    padding: .85rem 2.13rem;
+    transition: .2s ease-out;
+    white-space: normal!important;
+    color: white;
+}
+
+.btn-grey:active, .btn-grey:hover, .btn-grey:focus{
+    background-color: lightgray!important;
+}
+
+.btn-delete{
+    background-color: coral;
+    margin: 6px;
+    border-radius: 2px;
+    font-size: .8rem;
+    padding: .85rem 2.13rem;
+    transition: .2s ease-out;
+    white-space: normal!important;
+    color: white;
+}
+
+.btn-delete:active, .btn-delete:hover, .btn-delete:focus{
+    background-color: lightcoral;
+}
+
+/* fin de mon CSS */
