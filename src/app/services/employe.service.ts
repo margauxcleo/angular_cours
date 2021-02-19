@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Employe } from '../interfaces/employe';
 
 @Injectable({
@@ -46,14 +46,37 @@ export class EmployeService {
         )
   }
 
+  // get sur un employé
+    // getP avec les pipes 
+  getE(id:number): Observable<any> {
+    let API_URL = `${this.url}` + "selectEmploye" + `/${id}`;
+    return this.http.get(API_URL)
+      .pipe(
+        map((res: any) => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
 
-  // updateE(id:number, data:Employe): Observable<any> {
-  //   let API_URL = `${this.url}/${id}`;
-  //   return this.http.put(API_URL, data)
-  //     .pipe(
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
+
+  // Mettre à jour un employé
+  updateE(id:number, data:Employe): Observable<any> {
+    let API_URL = `${this.url}` + "updateEmploye" + `/${id}`;
+    return this.http.put(API_URL, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  // Delete avec les Pipes
+  deleteE(id:number): Observable<any> {
+    let API_URL = `${this.url}` + "deleteEmploye" + `/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
 
  
 

@@ -1,1 +1,15 @@
-<p>update-employe works!</p>
+<div class="container mt-2">
+    <form (ngSubmit)="updateEmploye()">
+        <div>
+            Id: <input class="form-control" type="text" name="_id" [(ngModel)]="employe._id" required/>
+        </div>
+        <div>
+            Nom: <input class="form-control"type="text" name="nom" [(ngModel)]="employe.nom" required/>
+        </div>
+        <div>
+            Prénom: <input class="form-control" type="text" name="prenom" [(ngModel)]="employe.prenom" required/>
+        </div>
+        <button type="submit" class="btn btn-info">Envoyer</button>
+    </form>
+</div>
+

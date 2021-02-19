@@ -33,4 +33,19 @@ export class EmployeListComponent implements OnInit {
       this.reloadData();
     })
   }
+
+  updateEmploye(_id : number){
+    this.router.navigate(['employe/update', _id]);
+  }
+
+  deleteEmploye(id: number){
+    this.employeService.deleteE(id).subscribe(data =>{
+      console.log(data);
+      this.reloadData();
+    })
+  }
+
+  showEmploye(_id : number){
+    this.router.navigate(['employe/show', _id]);
+  }
 }
