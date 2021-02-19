@@ -213,9 +213,47 @@
         </ng-container>
       </ul>
     </li>
-  
+
+    <!-- Exemple PIPE -->
+    
+    <li class="list-group-item">
+      <h3>Exemple pipe getChar</h3>
+      <ul>
+        <span>Ici, le pipe ne précisait pas d'argument, donc pas défaut, on récupère l'indice 0</span>
+        <li>Salut: {{ "salut" | getChar }}</li>
+        <li>Wick: {{ "wick" | getChar }}</li>
+        <li>John: {{ "john" | getChar }}</li>
+        <br/>
+        <span>Ici, on précise un argument: l'indice du caractère recherché</span>
+        <li>Salut index 4: {{ "salut" | getChar:4 }}</li>
+        <li>Wick index 1: {{ "wick" | getChar:1 }}</li>
+        <li>John sans index donc index 0: {{ "john" | getChar }}</li>
+      </ul>
+    </li>
+
+    <li class="list-group-item">
+      <h3>Exemple pipe getArrayObject</h3>
+      <h4>Ecrire un pipe qui permet de transformer un objet en tableau pour
+        qu’on puisse d’iterer avec un *ngFor</h4>
+        <ul>
+          <li *ngFor="let key of person | getArrayObject">
+          {{ key.key }} : {{ key.value }}
+          </li>
+      </ul>
+    </li>
+
+    <li class="list-group-item">
+      <h3>Exemple pipe subArray (slice)</h3>
+      <h4>Créer un pipe sub-array qui permet de retourner un sous tableau à partir d’un tableau selon les deux indices passés en paramètres si aucun indice n’est présent, il retourne le tableau complet si un seul indice est present, on retourne le sous-tableau qui commence de cet indice jusqu’ à la fin</h4>
+        <ul>
+          <li *ngFor="let i of collection | slice:1">{{i}}</li>
+      </ul>
+    </li>
   </div>
   
+
+
+
   <app-stagiaire></app-stagiaire>
   <!-- Affichera stagiaire works! dans le navigateur -->
   <app-adresse></app-adresse>

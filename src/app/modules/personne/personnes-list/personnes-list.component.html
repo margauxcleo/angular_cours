@@ -1,0 +1,46 @@
+<!-- <div class="container">
+    <ul class="list-group">
+        <ng-container *ngFor="let personne of personnes">
+            <li class="list-group-item ">
+                {{ personne.prenom }} {{ personne.nom }}
+              </li>
+        </ng-container>
+    </ul>
+</div> -->
+<div class="container mx-auto col-sm-12 col-md-8 mt-2">
+    <form #personneForm=ngForm (ngSubmit)="savePerson()" class="row justify-content-center g-3">
+        <div class="col-auto">
+            <input class="form-control" type="text" name="nom" placeholder="Entrer le nom" [(ngModel)]="personne.nom" #nom="ngModel"/>
+        </div>
+        <div class="col-auto">
+            <input class="form-control" type="text" name="prenom" placeholder="Entrer le prénom" [(ngModel)]="personne.prenom" #prenom="ngModel"/>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-success" [disabled]=!personneForm.valid>
+                Ajouter
+            </button>
+        </div>
+    </form>
+</div>
+<br/>
+<div class="container container mx-auto col-sm-12 col-md-8 border">
+    <ul class="list-group list-group-flush">
+        <ng-container *ngFor="let personne of personnes">
+            <li class="list-group-item d-flex justify-content-between">
+                {{ personne.prenom }} {{ personne.nom }}
+                <div class="button-group">
+                    <button class="btn btn-danger" (click)="deletePerson(personne.id)"> 
+                        Supprimer 
+                    </button>
+                    <button class="btn btn-warning" (click)="updatePerson(personne.id)">
+                        Modifier 
+                    </button>
+                    <button class="btn btn-secondary" (click)="showPerson(personne.id)">
+                        Voir
+                    </button>
+                </div>
+                
+            </li>
+        </ng-container>
+    </ul>
+</div>

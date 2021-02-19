@@ -36,6 +36,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { VehiculeModule } from './modules/vehicule/vehicule.module';
+import { GetCharPipe } from './pipes/get-char.pipe';
+import { GetArrayObjectPipe } from './pipes/get-array-object.pipe';
+import { GetSubArrayPipe } from './pipes/get-sub-array.pipe';
+import { PersonneModule } from './modules/personne/personne.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EmployeModule } from './modules/employe/employe.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,10 @@ import { VehiculeModule } from './modules/vehicule/vehicule.module';
     DashboardComponent,
     TableComponent,
     NavigationComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    GetCharPipe,
+    GetArrayObjectPipe,
+    GetSubArrayPipe
   ],
   imports: [
     BrowserModule,
@@ -77,7 +86,10 @@ import { VehiculeModule } from './modules/vehicule/vehicule.module';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    VehiculeModule
+    VehiculeModule,
+    PersonneModule,
+    HttpClientModule,
+    EmployeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   couleur="blue";
 
+
   libelleFormation = 'POEC FRONT';
   // ici, on crée personne => avec le type la classe Personne 
   personne: Personne = new Personne(100, 'Wick', 'John');
@@ -26,6 +27,15 @@ export class HomeComponent implements OnInit {
   ];
   // ici, on crée tab => avec le type un array de nombres
   tab:number[] = [3, 2, 6, 5, 11, 14, 18, 13];
+
+  // Exo Pipe object
+  person: any = {
+    nom: 'john', 
+    prenom: 'pat'
+  }
+
+  // Exo Pipe array
+  collection: string[] = ['a', 'b', 'c', 'd'];
 
   direBonjour(){
     return 'Bonjour Angular';

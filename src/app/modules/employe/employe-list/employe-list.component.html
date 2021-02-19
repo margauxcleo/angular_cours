@@ -1,0 +1,37 @@
+<h2 class="mx-auto col-sm-12 col-md-8 mt-2">Liste des employés récupérée depuis l'application Express Backend, en lien avec la BDD Mongo</h2>
+<div class="container mx-auto col-sm-12 col-md-8 mt-2">
+    <form #employeForm=ngForm (ngSubmit)="saveEmploye()" class="row justify-content-center g-3">
+        <div class="col-auto">
+            <input class="form-control" type="text" name="nom" placeholder="Entrer le nom" [(ngModel)]="employe.nom" #nom="ngModel"/>
+        </div>
+        <div class="col-auto">
+            <input class="form-control" type="text" name="prenom" placeholder="Entrer le prénom" [(ngModel)]="employe.prenom" #prenom="ngModel"/>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-success" [disabled]=!employeForm.valid>
+                Ajouter
+            </button>
+        </div>
+    </form>
+</div>
+<br/>
+<div class="container container mx-auto col-sm-12 col-md-8 border">
+    <ul class="list-group list-group-flush">
+        <ng-container *ngFor="let employe of employes.result">
+            <li class="list-group-item d-flex justify-content-between">
+                {{ employe.prenom }} {{ employe.nom }}
+                <div class="button-group">
+                    <!-- <button class="btn btn-danger" (click)="deleteEmploye(employe.id)"> 
+                        Supprimer 
+                    </button> -->
+                    <!-- <button class="btn btn-warning" (click)="updateEmploye(employe.id)">
+                        Modifier 
+                    </button> -->
+                    <!-- <button class="btn btn-secondary" (click)="showEmploye(employe.id)">
+                        Voir
+                    </button> -->
+                </div>   
+            </li>
+        </ng-container>
+    </ul>
+</div>

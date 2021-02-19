@@ -40,6 +40,12 @@ const routes: Routes = [
   // lazy-loading: charge les routes placées dans le fichier de routing de vehicule à la demande 
   { path: 'vehicule', loadChildren: './modules/vehicule/vehicule.module#VehiculeModule'},
 
+  // lazy loading module personne
+  { path: 'personne', loadChildren: './modules/personne/personne.module#PersonneModule'},
+
+  // lazy loading module employés
+  { path: 'employe', loadChildren: './modules/employe/employe.module#EmployeModule'},
+
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // full = mot exact, ici 'home'
   { path: '**', redirectTo: '/error' } // path error => "**" => n'importe quel contenu 

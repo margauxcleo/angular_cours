@@ -1,0 +1,23 @@
+<!-- <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h2 class="card-title">Page de {{ personne.prenom }} {{ personne.nom }} </h2>
+      <p class="card-text"></p>
+      <a href="#" class="btn btn-primary" (click)="backHomePage()" type="submit">Retour à la liste</a>
+    </div>
+  </div> -->
+
+<!-- CORRECTION -->
+
+  <h2>Personne Details</h2> 
+<hr/>
+<div *ngIf="personne">
+  <div>
+    <label><b>id: </b></label> {{personne.id}}
+  </div>  
+  <div>
+    <label><b>nom: </b></label> {{personne.nom}}
+  </div>
+  <div>
+    <label><b>prenom: </b></label> {{personne.prenom}}
+  </div>
+</div>
