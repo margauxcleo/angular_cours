@@ -42,6 +42,7 @@ import { GetSubArrayPipe } from './pipes/get-sub-array.pipe';
 import { PersonneModule } from './modules/personne/personne.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EmployeModule } from './modules/employe/employe.module';
+import { AuthComponent } from './composants/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { EmployeModule } from './modules/employe/employe.module';
     AddressFormComponent,
     GetCharPipe,
     GetArrayObjectPipe,
-    GetSubArrayPipe
+    GetSubArrayPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

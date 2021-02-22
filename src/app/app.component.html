@@ -54,6 +54,25 @@
                     <a class="dropdown-item" routerLink="employe/employes-list">Liste des employés</a>
                 </div>
             </li> 
+            <div > 
+                <li *ngIf="isConnected(); then logOut else logIn"> </li>
+                <ng-template #logOut>
+                    <li>
+                        <a class="nav-link grabLink" (click)="setLogOut()">Se déconnecter</a>
+                    </li>
+                  </ng-template>
+                  <ng-template #logIn>
+                    <li>
+                        <a class="nav-link grabLink"  routerLink="auth" routerLinkActiveOptions="true">Se connecter</a>
+                    </li>
+                  </ng-template>
+            </div>
+            <!-- <li *ngIf=!isConnected()>
+                <a class="nav-link grabLink"  routerLink="auth" routerLinkActiveOptions="true">Se connecter</a>
+            </li>
+            <li *ngIf=isConnected()>
+                <a class="nav-link grabLink" (click)="setLogOut()">Se déconnecter</a>
+            </li>  -->
         </ul>
     </div>
 </nav>

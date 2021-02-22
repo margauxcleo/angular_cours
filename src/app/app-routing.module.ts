@@ -13,6 +13,8 @@ import { ReactiveFormComponent } from './composants/reactive-form/reactive-form.
 import { StagiaireComponent } from './composants/stagiaire/stagiaire.component';
 import { TemplateformComponent } from './composants/templateform/templateform.component';
 import { TpFormComponent } from './composants/tp-form/tp-form.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthComponent } from './composants/auth/auth.component';
 
 
 // redirectTo: '/home": nous utilisons cette propriété dans le tableau routes pour indiquer au service de routage si les utilisateurs naviguent vers l'URL vide,
@@ -28,7 +30,7 @@ const routes: Routes = [
   { path: 'template-form', component: TemplateformComponent },
   { path: 'reactive-form', component: ReactiveFormComponent },
   { path: 'tp-form', component: TpFormComponent },
-  { path: 'adresse', component: AdresseComponent },
+  { path: 'adresse', component: AdresseComponent, canActivate: [AuthGuard]},
   { path: 'calculette', component: CalculetteComponent },
 
   { path: 'dragdrop', component : DragdropComponent },
@@ -45,6 +47,14 @@ const routes: Routes = [
 
   // lazy loading module employés
   { path: 'employe', loadChildren: './modules/employe/employe.module#EmployeModule'},
+
+  // mise en place de la guard : pr que tout le monde n'ai pas accès à Adresse
+  // { 
+  //   path: 'adresse',
+  //   component: AdresseComponent,
+  //   canActivate: [AuthGuard]
+  // },
+  { path: 'auth', component: AuthComponent },
 
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // full = mot exact, ici 'home'

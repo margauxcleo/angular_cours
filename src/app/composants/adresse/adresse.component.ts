@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adresse',
@@ -7,9 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdresseComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
-
 }
