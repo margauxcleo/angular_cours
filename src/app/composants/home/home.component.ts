@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Personne } from '../../classes/personne';
+
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,15 @@ import { Personne } from '../../classes/personne';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  // ngx bootstrap
+  modalRef!: BsModalRef;
+
+  constructor(public modalService: BsModalService) {}
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   title = 'angular-front-end';
 
@@ -48,8 +59,6 @@ export class HomeComponent implements OnInit {
   getBackgroundColor(){
     return 'red';
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }

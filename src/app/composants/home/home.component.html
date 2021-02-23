@@ -249,6 +249,35 @@
           <li *ngFor="let i of collection | slice:1">{{i}}</li>
       </ul>
     </li>
+
+    <!-- ngx bootstrap -->
+    <br/>
+    <h3>NGX Bootstrap</h3>
+    <li class="list-group-item">
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        tooltip="Je suis un bouton qui utilise le module Tooltip de ngx-bootstrap">
+        Bouton avec Tooltip
+      </button>
+    </li>
+    <li class="list-group-item">
+      <button 
+        type="button" 
+        class="btn btn-info" (click)="openModal(modal)">
+        Open Modal
+      </button>
+      <ng-template #modal>
+        <div class="modal-header">
+          <h4 class="modal-title fa-pull-left">Modal</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"></button>
+          <span aria-hidden="true">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>I am Modal</p>
+        </div>
+      </ng-template>
+    </li>
   </div>
   
 
