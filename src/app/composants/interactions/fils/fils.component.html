@@ -1,0 +1,29 @@
+<!-- La balise ng-content a un attribut select qui prend comme valeur :
+    - le nom d'un attribut défini dans le composant parent
+    - Le nom d'une classe CSS 
+    - le nom d'une balise 
+-->
+
+<!-- on récupère avec un attribut -->
+<!-- <li>
+    Je suis un fils: mon prénom est <ng-content select="[prenomContent]"></ng-content>
+    et mon nom est <ng-content select="[nomContent]"></ng-content>
+</li> -->
+
+<!-- on récupère avec une classe  -->
+<!-- <li>
+    Je suis un fils: mon prénom est <ng-content select=".prenomContent"></ng-content>
+    et mon nom est <ng-content select=".nomContent"></ng-content>
+</li> -->
+
+<!-- on récupère avec un link -->
+<!-- <li>
+    Nom et prénom: 
+    <ng-content select="span"></ng-content>
+    Pour apprendre plus <ng-content select="a"></ng-content>
+</li> -->
+
+<!-- récupération d'infos via @Input dans ts -->
+<li>
+    Je suis le {{ ordre }} fils et suis de {{ villeNaissance }}.
+</li>

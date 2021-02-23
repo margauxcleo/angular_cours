@@ -1,0 +1,13 @@
+<!-- <h4>Compétence {{ skill.name }}</h4>
+<li>
+    <span {{ skill1.name}}></span>
+    <span {{ skill.logo}}></span>
+    <a href="#" {{ skill.site }}></a>
+</li> -->
+
+<div>
+    <p>{{skill.name}}</p>
+    <img [src]="skill.logo" [alt]="skill.name" />
+    <a [href]="skill.site">Site</a>
+</div>
+

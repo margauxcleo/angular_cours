@@ -15,6 +15,11 @@ import { TemplateformComponent } from './composants/templateform/templateform.co
 import { TpFormComponent } from './composants/tp-form/tp-form.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthComponent } from './composants/auth/auth.component';
+import { LeaveGuard } from './guards/leave.guard';
+import { PereComponent } from './composants/interactions/pere/pere.component';
+import { FilsComponent } from './composants/interactions/fils/fils.component';
+import { ParentComponent } from './composants/interactions/parent/parent.component';
+import { DeveloperComponent } from './composants/interactions/tp/developer/developer.component';
 
 
 // redirectTo: '/home": nous utilisons cette propriété dans le tableau routes pour indiquer au service de routage si les utilisateurs naviguent vers l'URL vide,
@@ -27,10 +32,14 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'stagiaire', component: StagiaireComponent },
   { path:'stagiaire/:nom/:prenom', component: StagiaireComponent },
-  { path: 'template-form', component: TemplateformComponent },
+  { path: 'template-form', component: TemplateformComponent, canDeactivate: [LeaveGuard] },
   { path: 'reactive-form', component: ReactiveFormComponent },
   { path: 'tp-form', component: TpFormComponent },
+  
+  // mise en place de la guard : pr que tout le monde n'ai pas accès à Adresse
   { path: 'adresse', component: AdresseComponent, canActivate: [AuthGuard]},
+  { path: 'auth', component: AuthComponent },
+
   { path: 'calculette', component: CalculetteComponent },
 
   { path: 'dragdrop', component : DragdropComponent },
@@ -48,13 +57,15 @@ const routes: Routes = [
   // lazy loading module employés
   { path: 'employe', loadChildren: './modules/employe/employe.module#EmployeModule'},
 
-  // mise en place de la guard : pr que tout le monde n'ai pas accès à Adresse
-  // { 
-  //   path: 'adresse',
-  //   component: AdresseComponent,
-  //   canActivate: [AuthGuard]
-  // },
-  { path: 'auth', component: AuthComponent },
+  // exo interactions père/fils 
+  { path: 'pere', component: PereComponent},
+  
+  // exo intéractions parent/child 
+  { path: 'parent', component: ParentComponent},
+
+  // tp interactions developer/skill
+  { path: 'developer', component: DeveloperComponent},
+
 
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // full = mot exact, ici 'home'

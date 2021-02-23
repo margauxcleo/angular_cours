@@ -1,0 +1,10 @@
+<h3>Moyenne des enfants {{ moyenne }}</h3>
+
+<!-- Pour les évènements EventEmitter, la valeur  -->
+<app-child 
+    *ngFor="let enfant of enfants" 
+    [nom]="enfant" 
+    (message)="computeAvg($event)"
+>
+
+</app-child>

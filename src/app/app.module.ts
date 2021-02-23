@@ -43,6 +43,13 @@ import { PersonneModule } from './modules/personne/personne.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EmployeModule } from './modules/employe/employe.module';
 import { AuthComponent } from './composants/auth/auth.component';
+import { NgxBootstrapModule } from './ngx-bootstrap.module';
+import { PereComponent } from './composants/interactions/pere/pere.component';
+import { FilsComponent } from './composants/interactions/fils/fils.component';
+import { ParentComponent } from './composants/interactions/parent/parent.component';
+import { ChildComponent } from './composants/interactions/child/child.component';
+import { DeveloperComponent } from './composants/interactions/tp/developer/developer.component';
+import { SkillComponent } from './composants/interactions/tp/skill/skill.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +70,13 @@ import { AuthComponent } from './composants/auth/auth.component';
     GetCharPipe,
     GetArrayObjectPipe,
     GetSubArrayPipe,
-    AuthComponent
+    AuthComponent,
+    PereComponent,
+    FilsComponent,
+    ParentComponent,
+    ChildComponent,
+    DeveloperComponent,
+    SkillComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +104,8 @@ import { AuthComponent } from './composants/auth/auth.component';
     VehiculeModule,
     PersonneModule,
     HttpClientModule,
-    EmployeModule
+    EmployeModule,
+    NgxBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
