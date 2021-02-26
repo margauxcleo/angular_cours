@@ -50,6 +50,7 @@ import { ParentComponent } from './composants/interactions/parent/parent.compone
 import { ChildComponent } from './composants/interactions/child/child.component';
 import { DeveloperComponent } from './composants/interactions/tp/developer/developer.component';
 import { SkillComponent } from './composants/interactions/tp/skill/skill.component';
+import { ObservableComponent } from './composants/rxjs/observable/observable.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { SkillComponent } from './composants/interactions/tp/skill/skill.compone
     ParentComponent,
     ChildComponent,
     DeveloperComponent,
-    SkillComponent
+    SkillComponent,
+    ObservableComponent
   ],
   imports: [
     BrowserModule,

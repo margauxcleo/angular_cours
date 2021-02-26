@@ -20,6 +20,7 @@ import { PereComponent } from './composants/interactions/pere/pere.component';
 import { FilsComponent } from './composants/interactions/fils/fils.component';
 import { ParentComponent } from './composants/interactions/parent/parent.component';
 import { DeveloperComponent } from './composants/interactions/tp/developer/developer.component';
+import { ObservableComponent } from './composants/rxjs/observable/observable.component';
 
 
 // redirectTo: '/home": nous utilisons cette propriété dans le tableau routes pour indiquer au service de routage si les utilisateurs naviguent vers l'URL vide,
@@ -66,6 +67,8 @@ const routes: Routes = [
   // tp interactions developer/skill
   { path: 'developer', component: DeveloperComponent},
 
+  // observables
+  { path: 'observable', component: ObservableComponent},
 
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // full = mot exact, ici 'home'

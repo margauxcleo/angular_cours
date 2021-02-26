@@ -44,6 +44,7 @@ Pour pouvoir utiliser la propriété ngModel, il faut ajouter le module FormsMod
                 <!-- lorsque que le champ est remplis, les classes sont: ng-dirty ng-valid ng-touched -->
                 <!-- .pristine => si prenom est vide, on a pas besoin d'afficher le msg d'erreur -->
                 <div [hidden]="prenom.valid || prenom.pristine">Le prénom est obligatoire. </div>
+
                 <div>
                     <label for="nom" class="form-label">Nom:</label>
                     <input input class="form-control" type="text" name="nom" [(ngModel)]="personne.nom" required #nom='ngModel'/>
@@ -58,16 +59,14 @@ Pour pouvoir utiliser la propriété ngModel, il faut ajouter le module FormsMod
                 </div>
                 <br/>
                 <div class="container">
-                    <ul class="row list-group">
-                        <ng-container *ngFor="let personne of personnes;">
-                            <li class="list-group-item">
-                              {{ personne.prenom + " " + personne.nom }}
-                            </li>
-                            <!-- <form (ngSubmit)=supprimerPersonne(personne)>
-                                <button class="btn btn-danger"> Supprimer </button>
-                            </form> -->
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let personne of personnes;">
+                            <span>{{ personne.prenom + " " + personne.nom }}</span>
                             <button type="submit" class="btn btn-danger" (click)="supprimerPersonne(personne)">Supprimer</button>
-                        </ng-container>
+                        </li>
+                        <!-- <form (ngSubmit)=supprimerPersonne(personne)>
+                            <button class="btn btn-danger"> Supprimer </button>
+                        </form> -->
                     </ul>
                 </div>
             </form>
